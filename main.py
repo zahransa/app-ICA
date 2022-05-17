@@ -1,16 +1,17 @@
 
 import mne
 from pathlib import Path
+import json
+
+# Load inputs from config.json
+with open('config.json') as config_json:
+    config = json.load(config_json)
+
+# Read the raw and cov file
+data_file_raw = config.pop('fif')
 
 
-data_path = Path(mne.datasets.sample.data_path(verbose=False))
-sample_dir = data_path / 'MEG' / 'sample'
-subjects_dir = data_path / 'subjects'
-
-
-
-raw_path = sample_dir / 'sample_audvis_filt-0-40_raw.fif'
-raw = mne.io.read_raw_fif(raw_path, preload=True, verbose=False)
+raw = mne.io.read_raw_fif(data_file_raw, preload=True, verbose=False)
 
 
 
