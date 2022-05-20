@@ -2,6 +2,7 @@
 import mne
 from pathlib import Path
 import json
+import os
 
 # Load inputs from config.json
 with open('config.json') as config_json:
@@ -42,4 +43,5 @@ report.add_ica(
     eog_scores=eog_scores,
     n_jobs=1  # could be increased!
 )
-report.save('report_ica.html', overwrite=True)
+
+report.save('out_dir_report/report_ica.html', overwrite=True)
